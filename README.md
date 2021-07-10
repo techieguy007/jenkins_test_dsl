@@ -1,1 +1,1 @@
-# This repo is demo to create a seed job
+# This repo is a demo to create a seed job

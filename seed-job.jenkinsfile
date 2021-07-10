@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+        stage("Git clone job dsl") {
+            steps {
+                dir("jenkins_test_dsl") {
+                    url: 'ssh://git@github.com:techieguy007/jenkins_test_dsl.git', branch: 'master'
+                }
+            }
+        }
+    }
+}
