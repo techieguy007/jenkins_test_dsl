@@ -8,5 +8,17 @@ pipeline {
                 }
             }
         }
+        stage('Populate jobs') {
+            steps {
+                script {
+                    jobDsl targets: ['jenkins_test_dsl/*.groovy', 'jenkins_test_dsl/**/*.groovy'].join('\n'),
+                           removedJobAction: 'DELETE',
+                           removedViewAction: 'DELETE',
+                           removedConfigFilesAction: 'DELETE',
+                           lookupStrategy: 'SEED_JOB',
+                           additionalParameters: [JENKINS_ENVIRONMENT: env.JENKINS_ENVIRONMENT, WORKSPACE: env.WORKSPACE]
+                }
+            }
+        }
     }
 }
