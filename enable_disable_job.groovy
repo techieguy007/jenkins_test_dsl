@@ -16,7 +16,7 @@ pipelineJob("enable-disable_job") {
                         credentials('github-techieguy')
                     }
                     branch('test_dsl')
-                    scriptPath("jenkins_test_dsl/enable_disable.jenkinsfile")
+                    scriptPath("jenkins_test_dsl/enable_disable.Jenkinsfile")
                 }
             }
         }
