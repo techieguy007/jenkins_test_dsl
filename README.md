@@ -1,1 +1,1 @@
-# jenkins_test_dsl
+# This repo is demo to create a seed job
