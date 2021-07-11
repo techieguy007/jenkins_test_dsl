@@ -1,11 +1,4 @@
 pipelineJob("enable-disable_job") {
-    properties {
-        pipelineTriggers {
-            triggers {
-                cron { spec('H 01 * * *') }
-            }
-        }
-    }
     description("enable disable cron jobs")
     definition {
         cpsScm {
