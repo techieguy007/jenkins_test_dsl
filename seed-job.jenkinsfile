@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage("Git clone job-dsl") {
+            steps {
+                dir("jenkins_test_dsl") {
+                    git credentialsId: 'github-techieguy', url: 'git@github.com:techieguy007/jenkins_test_dsl.git', branch: 'test_dsl'
+                }
+            }
+        }
+        stage('Populate jobs') {
+            steps {
+                script {
+                    jobDsl targets: ['jenkins_test_dsl/*.groovy', 'jenkins_test_dsl/**/*.groovy'].join('\n'),
+                           removedJobAction: 'DELETE',
+                           removedViewAction: 'DELETE',
+                           removedConfigFilesAction: 'DELETE',
+                           lookupStrategy: 'SEED_JOB',
+                           additionalParameters: [JENKINS_ENVIRONMENT: env.JENKINS_ENVIRONMENT, WORKSPACE: env.WORKSPACE]
+                }
+            }
+        }
+    }
+}
