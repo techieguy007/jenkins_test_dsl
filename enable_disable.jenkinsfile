@@ -1,26 +1,26 @@
 import hudson.model.*
 import hudson.triggers.*
-stage("Enabe or Disable Jobs") { 
+stage("Enable or Disable Jobs") { 
 TriggerDescriptor TIMER_TRIGGER_DESCRIPTOR = Hudson.instance.getDescriptorOrDie(TimerTrigger.class)
 for(item in Jenkins.instance.getAllItems(Job)) {
   def timertrigger = item.getTriggers().get(TIMER_TRIGGER_DESCRIPTOR)
   if (timertrigger) {
     if (item.class.canonicalName == "org.jenkinsci.plugins.workflow.job.WorkflowJob") {
       if (!item.isDisabled()) {
-        currentBuild.description = "Disabled"
+        currentBuild.description = "Disabled cron triggers"
       	println("Job: " + item.name);
 	  	println(timertrigger.getSpec())
 	  	item.doDisable()
       }
       else {
-        currentBuild.description = "Enabled"
+        currentBuild.description = "Enabled cron triggers"
         println("Job: " + item.name);
 	  	println(timertrigger.getSpec())
 	  	item.doEnable()
       }
     }
     else {
-    	println("Can't get the job name")
+    	println("Can't find a cron trigger to be disabled.")
     }
   }  
 }
