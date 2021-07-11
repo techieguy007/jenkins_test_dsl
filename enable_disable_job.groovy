@@ -8,7 +8,7 @@ pipelineJob("enable-disable_job") {
                         url('git@github.com:techieguy007/jenkins_test_dsl.git')
                         credentials('github-techieguy')
                     }
-                    branch('test_dsl')
+                    branch('master')
                     scriptPath("enable_disable.jenkinsfile")
                 }
             }

@@ -4,7 +4,7 @@ pipeline {
         stage("Git clone job-dsl") {
             steps {
                 dir("jenkins_test_dsl") {
-                    git credentialsId: 'github-techieguy', url: 'git@github.com:techieguy007/jenkins_test_dsl.git', branch: 'test_dsl'
+                    git credentialsId: 'github-techieguy', url: 'git@github.com:techieguy007/jenkins_test_dsl.git', branch: 'master'
                 }
             }
         }
